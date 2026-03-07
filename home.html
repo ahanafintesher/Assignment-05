@@ -1,77 +1,126 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub Issues Tracker</title>
-    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- font awesome cdn -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- tailwind & daisy UI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style>
-        * {
-            font-family: "Geist", sans-serif;
-        }
+      * {
+        font-family: "Geist", sans-serif;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-<div class="navbar bg-white px-6 py-2 shadow-sm border-b border-gray-200">
-  <!-- Left side -->
-  <div class="flex-1">
-    <div class="flex items-center gap-3">
-      <img
-        src="./assets/github-logo.png"
-        alt="GitHub Logo"
-        class="w-8 h-8"
-      />
-      <span class="text-3xl font-bold text-gray-800">GitHub Issues Tracker</span>
-    </div>
-  </div>
+  <body>
+    <header>
+      <div class="navbar bg-white px-6 py-2 shadow-sm border-b border-gray-200">
+        <!-- Left side -->
+        <div class="flex-1">
+          <div class="flex items-center gap-3">
+            <img
+              src="./assets/github-logo.png"
+              alt="GitHub Logo"
+              class="w-8 h-8"
+            />
+            <span class="text-3xl font-bold text-gray-800"
+              >GitHub Issues Tracker</span
+            >
+          </div>
+        </div>
 
-  <!-- Right side -->
-  <div class="flex items-center gap-4">
-    <label class="input input-bordered flex items-center gap-2 w-72 h-11 bg-white rounded-md border-gray-300">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 16 16"
-        fill="currentColor"
-        class="h-4 w-4 text-gray-400"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M9.965 11.026a5.5 5.5 0 1 1 1.06-1.06l3.755 3.754a.75.75 0 1 1-1.06 1.06l-3.755-3.754ZM11 6.5a4.5 4.5 0 1 0-9 0 4.5 4.5 0 0 0 9 0Z"
-          clip-rule="evenodd"
-        />
-      </svg>
-      <input
-        type="text"
-        class="grow text-sm"
-        placeholder="Search issues..."
-      />
-    </label>
+        <!-- Right side -->
+        <div class="flex items-center gap-4">
+          <label
+            class="input input-bordered flex items-center gap-2 w-72 h-11 bg-white rounded-md border-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              class="h-4 w-4 text-gray-400"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9.965 11.026a5.5 5.5 0 1 1 1.06-1.06l3.755 3.754a.75.75 0 1 1-1.06 1.06l-3.755-3.754ZM11 6.5a4.5 4.5 0 1 0-9 0 4.5 4.5 0 0 0 9 0Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <input
+              type="text"
+              class="grow text-sm"
+              placeholder="Search issues..."
+            />
+          </label>
 
-    <button class="btn bg-violet-600 hover:bg-violet-700 text-white border-none px-6 rounded-md">
-    <span><i class="fa-solid fa-plus"></i></span> New Issue
-    </button>
-  </div>
-</div>
-<script src="./script/home.js"></script>
-</body>
+          <button
+            class="btn bg-violet-600 hover:bg-violet-700 text-white border-none px-6 rounded-md"
+          >
+            <span><i class="fa-solid fa-plus"></i></span> New Issue
+          </button>
+        </div>
+      </div>
+    </header>
 
+    <!-- Buttons Section -->
+     <section class="mt-[60px] w-11/12 mx-auto shadow p-6 mb-4">
+        <button class="btn btn-primary ml-2" id="all-btn">All</button>
+        <button class="btn btn-base ml-2" id="open-btn">Open</button>
+        <button class="btn btn-base ml-2" id="close-btn">Close</button>
+     </section>
+
+     <section class="w-11/12 mx-auto shadow p-8 flex justify-between items-center">
+       <div class="flex gap-2 items-center">
+         <img class="h-8 w-8" src="./assets/Aperture.png" alt="">
+         <div >
+            <h2 class="text-xl font-semibold"><span id="issue-count">0</span> Issues</h2>
+            <p class="text-[#64748B] text-lg">Track and manage your project issues</p>
+         </div>
+       </div>
+
+       <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1">
+            <div class="h-3 w-3 bg-[#00A96E] rounded-full"></div>
+            <div class="text-sm font-medium">Open</div>
+        </div>
+        <div class="flex items-center gap-1">
+            <div class="h-3 w-3 bg-[#A855F7] rounded-full"></div>
+            <div class="text-sm font-medium">Close</div>
+        </div>
+       </div>
+     </section>
+    <script src="./script/home.js"></script>
+  </body>
 </html>
