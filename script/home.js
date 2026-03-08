@@ -295,6 +295,27 @@ const renderCloseData = () => {
 
 // modal section
 
+const openModal = (issue) => {
+  document.getElementById('modal-title').innerText = issue.title;
+  document.getElementById('modal-author').innerText = `Opened by ${issue.author}`;
+  document.getElementById('modal-date').innerText = `• ${new Date(issue.createdAt).toLocaleDateString()}`;
+  document.getElementById('modal-description').innerText = issue.description;
+  document.getElementById('modal-assignee').innerText = issue.assignee || 'Unassigned';
+  document.getElementById('modal-priority').innerText = issue.priority.toUpperCase();
 
+  const labelsDiv = document.getElementById('modal-labels');
+  labelsDiv.innerHTML = '';
+  issue.labels.forEach(label => {
+    labelsDiv.innerHTML += `
+      <span class="bg-red-100 text-red-400 text-xs font-semibold px-3 py-1 rounded-full"> ${label}</span>
+    `;
+  });
+
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+const closeModal = () => {
+  document.getElementById('modal').classList.add('hidden');
+}
 
 loadAllData();
