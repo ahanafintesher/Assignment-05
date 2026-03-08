@@ -95,35 +95,100 @@
     </header>
 
     <!-- Buttons Section -->
-     <section class="mt-[60px] w-11/12 mx-auto shadow p-6 mb-4">
-        <button class="btn btn-primary ml-2" id="all-btn">All</button>
-        <button class="btn btn-base ml-2" id="open-btn">Open</button>
-        <button class="btn btn-base ml-2" id="close-btn">Close</button>
-     </section>
+    <section class="mt-[60px] w-11/12 mx-auto shadow p-6 mb-4">
+      <button class="btn btn-primary ml-2" id="all-btn">All</button>
+      <button class="btn btn-base ml-2" id="open-btn">Open</button>
+      <button class="btn btn-base ml-2" id="close-btn">Close</button>
+    </section>
 
-     <section class="w-11/12 mx-auto shadow p-8 flex justify-between items-center mb-3">
-       <div class="flex gap-2 items-center">
-         <img class="h-8 w-8" src="./assets/Aperture.png" alt="">
-         <div >
-            <h2 class="text-xl font-semibold"><span id="issue-count">0</span> Issues</h2>
-            <p class="text-[#64748B] text-lg">Track and manage your project issues</p>
-         </div>
-       </div>
+    <section
+      class="w-11/12 mx-auto shadow p-8 flex justify-between items-center mb-3"
+    >
+      <div class="flex gap-2 items-center">
+        <img class="h-8 w-8" src="./assets/Aperture.png" alt="" />
+        <div>
+          <h2 class="text-xl font-semibold">
+            <span id="issue-count">0</span> Issues
+          </h2>
+          <p class="text-[#64748B] text-lg">
+            Track and manage your project issues
+          </p>
+        </div>
+      </div>
 
-       <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4">
         <div class="flex items-center gap-1">
-            <div class="h-3 w-3 bg-[#00A96E] rounded-full"></div>
-            <div class="text-sm font-medium">Open</div>
+          <div class="h-3 w-3 bg-[#00A96E] rounded-full"></div>
+          <div class="text-sm font-medium">Open</div>
         </div>
         <div class="flex items-center gap-1">
-            <div class="h-3 w-3 bg-[#A855F7] rounded-full"></div>
-            <div class="text-sm font-medium">Close</div>
+          <div class="h-3 w-3 bg-[#A855F7] rounded-full"></div>
+          <div class="text-sm font-medium">Close</div>
         </div>
-       </div>
-     </section>
+      </div>
+    </section>
 
-     <section id="all-section" class="grid grid-cols-4 w-11/12 mx-auto gap-4">
+    <!-- all section -->
 
-     </section>
+    <section
+      id="all-section"
+      class="grid grid-cols-4 w-11/12 mx-auto gap-4"
+    ></section>
+
+    <!-- modal section -->
+
+    <section>
+      <div
+        id="modal"
+        class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+      >
+        <div class="bg-white rounded-2xl p-6 w-96 shadow-xl">
+          <h2
+            id="modal-title"
+            class="text-gray-900 font-bold text-lg mb-2"
+          ></h2>
+
+          <div class="flex items-center gap-2 mb-3">
+            <span
+              class="bg-green-100 text-green-600 text-xs font-bold px-3 py-1 rounded-full"
+              >Opened</span
+            >
+            <span id="modal-author" class="text-gray-400 text-xs"></span>
+            <span id="modal-date" class="text-gray-400 text-xs"></span>
+          </div>
+
+          <div id="modal-labels" class="flex gap-2 mb-3"></div>
+
+          <p id="modal-description" class="text-gray-500 text-sm mb-4"></p>
+
+          <div class="bg-gray-50 rounded-xl p-4 flex gap-8 mb-4">
+            <div>
+              <p class="text-gray-400 text-xs mb-1">Assignee:</p>
+              <p
+                id="modal-assignee"
+                class="text-gray-800 font-medium text-sm"
+              ></p>
+            </div>
+            <div>
+              <p class="text-gray-400 text-xs mb-1">Priority:</p>
+              <span
+                id="modal-priority"
+                class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full"
+              ></span>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button
+              onclick="closeModal()"
+              class="bg-purple-600 text-white text-sm px-5 py-2 rounded-xl"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
     <script src="./script/home.js"></script>
   </body>
+</html>
