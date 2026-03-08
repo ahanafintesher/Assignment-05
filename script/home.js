@@ -137,6 +137,7 @@ const renderAllData = (infos) => {
 
 // button functionallity
 
+
 let allFilterBtn = document.getElementById('all-btn');
 let openFilterBtn = document.getElementById('open-btn');
 let closeFilterBtn = document.getElementById('close-btn');
@@ -146,6 +147,8 @@ allFilterBtn.addEventListener('click', function(){
     allFilterBtn.classList.remove('btn-base');
     openFilterBtn.classList.remove('btn-primary');
     openFilterBtn.classList.add('btn-base');
+    closeFilterBtn.classList.remove('btn-primary');
+    closeFilterBtn.classList.add('btn-base');        
     renderAllData(allData);     
 })
 
@@ -154,6 +157,8 @@ openFilterBtn.addEventListener('click', function(){
     allFilterBtn.classList.add('btn-base');
     openFilterBtn.classList.remove('btn-base');
     openFilterBtn.classList.add('btn-primary');
+    closeFilterBtn.classList.remove('btn-primary'); 
+    closeFilterBtn.classList.add('btn-base');        
     renderOpenData();
 })
 
