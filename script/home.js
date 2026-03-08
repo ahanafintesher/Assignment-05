@@ -3,13 +3,16 @@ let allData = [];
 // data fetching
 
 const loadAllData = () => {
+  document.getElementById('spinner').classList.remove('hidden'); 
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
     .then((datas) => {
-        allData = datas.data;       
-        renderAllData(allData);     
+        allData = datas.data;
+        document.getElementById('spinner').classList.add('hidden'); 
+        renderAllData(allData);
     });
 };
+
 
 let issueCount = document.getElementById("issue-count");
 const allSection = document.getElementById("all-section");
@@ -127,7 +130,7 @@ const renderAllData = (infos) => {
 </div>
         `;
     }
-    div.addEventListener('click', () => openModal(info)); // ✅
+    div.addEventListener('click', () => openModal(info));
     allSection.appendChild(div);
   }
 };
@@ -224,7 +227,7 @@ const renderOpenData = () => {
 
 </div>
         `;
-        div.addEventListener('click', () => openModal(issue)); // ✅
+        div.addEventListener('click', () => openModal(issue));
         allSection.appendChild(div);
     }
 }
@@ -288,7 +291,7 @@ const renderCloseData = () => {
 
 </div>
         `;
-        div.addEventListener('click', () => openModal(issue)); // ✅
+        div.addEventListener('click', () => openModal(issue));
         allSection.appendChild(div);
     }
 }
@@ -317,5 +320,25 @@ const openModal = (issue) => {
 const closeModal = () => {
   document.getElementById('modal').classList.add('hidden');
 }
+
+// search logic 
+
+
+
+const searchIssue = () => {
+  let searchText = document.getElementById('search-input').value.toLowerCase();
+  let filteredData = allData.filter(issue =>
+    issue.title.toLowerCase().includes(searchText) 
+  );
+  renderAllData(filteredData);
+}
+
+document.getElementById('search-input').addEventListener('input', function(){
+  let searchText = this.value.toLowerCase();
+  let filteredData = allData.filter(issue =>
+    issue.title.toLowerCase().includes(searchText) 
+  );
+  renderAllData(filteredData);
+})
 
 loadAllData();

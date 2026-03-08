@@ -11,7 +11,6 @@
     />
 
     <!-- Google Fonts -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,7 +19,6 @@
     />
 
     <!-- font awesome cdn -->
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -46,23 +44,23 @@
 
   <body>
     <header>
-      <div class="navbar bg-white px-6 py-2 shadow-sm border-b border-gray-200">
+      <div class="navbar bg-white px-4 md:px-6 py-2 shadow-sm border-b border-gray-200">
         <!-- Left side -->
         <div class="flex-1">
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 md:gap-3">
             <img
               src="./assets/github-logo.png"
               alt="GitHub Logo"
-              class="w-8 h-8"
+              class="w-7 h-7 md:w-8 md:h-8"
             />
-            <span class="text-3xl font-bold text-gray-800"
-              >GitHub Issues Tracker</span
-            >
+            <span class="text-lg md:text-3xl font-bold text-gray-800">
+              GitHub Issues Tracker
+            </span>
           </div>
         </div>
 
-        <!-- Right side -->
-        <div class="flex items-center gap-4">
+        <!-- Right side - hidden on mobile -->
+        <div class="hidden md:flex items-center gap-4">
           <label
             class="input input-bordered flex items-center gap-2 w-72 h-11 bg-white rounded-md border-gray-300"
           >
@@ -80,29 +78,48 @@
             </svg>
             <input
               type="text"
+              id="search-input"
               class="grow text-sm"
               placeholder="Search issues..."
             />
           </label>
 
           <button
+            onclick="searchIssue()"
             class="btn bg-violet-600 hover:bg-violet-700 text-white border-none px-6 rounded-md"
           >
-            <span><i class="fa-solid fa-magnifying-glass"></i> Search Issue
+            <span><i class="fa-solid fa-magnifying-glass"></i> Search Issue</span>
           </button>
         </div>
+      </div>
+
+      <!-- Mobile search bar -->
+      <div class="md:hidden px-4 py-3 bg-white border-b border-gray-200 flex gap-2">
+        <input
+          type="text"
+          id="search-input-mobile"
+          class="input input-bordered grow h-10 text-sm rounded-md"
+          placeholder="Search issues..."
+        />
+        <button
+          onclick="searchIssue()"
+          class="btn bg-violet-600 hover:bg-violet-700 text-white border-none px-4 rounded-md"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
       </div>
     </header>
 
     <!-- Buttons Section -->
-    <section class="mt-[60px] w-11/12 mx-auto shadow p-6 mb-4">
+    <section class="mt-6 md:mt-[60px] w-11/12 mx-auto shadow p-4 md:p-6 mb-4">
       <button class="btn btn-primary ml-2" id="all-btn">All</button>
       <button class="btn btn-base ml-2" id="open-btn">Open</button>
       <button class="btn btn-base ml-2" id="close-btn">Close</button>
     </section>
 
+    <!-- Issue count section -->
     <section
-      class="w-11/12 mx-auto shadow p-8 flex justify-between items-center mb-3"
+      class="w-11/12 mx-auto shadow p-4 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-3"
     >
       <div class="flex gap-2 items-center">
         <img class="h-8 w-8" src="./assets/Aperture.png" alt="" />
@@ -110,7 +127,7 @@
           <h2 class="text-xl font-semibold">
             <span id="issue-count">0</span> Issues
           </h2>
-          <p class="text-[#64748B] text-lg">
+          <p class="text-[#64748B] text-sm md:text-lg">
             Track and manage your project issues
           </p>
         </div>
@@ -128,27 +145,30 @@
       </div>
     </section>
 
-    <!-- all section -->
+    <!-- Loading Spinner -->
+    <div id="spinner" class="flex justify-center items-center py-20">
+      <span class="loading loading-spinner loading-lg text-violet-600"></span>
+    </div>
 
+    <!-- all section -->
     <section
       id="all-section"
-      class="grid grid-cols-4 w-11/12 mx-auto gap-4"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-11/12 mx-auto gap-4 pb-10"
     ></section>
 
     <!-- modal section -->
-
     <section>
       <div
         id="modal"
-        class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+        class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4"
       >
-        <div class="bg-white rounded-2xl p-6 w-96 shadow-xl">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
           <h2
             id="modal-title"
             class="text-gray-900 font-bold text-lg mb-2"
           ></h2>
 
-          <div class="flex items-center gap-2 mb-3">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
             <span
               class="bg-green-100 text-green-600 text-xs font-bold px-3 py-1 rounded-full"
               >Opened</span
@@ -157,17 +177,14 @@
             <span id="modal-date" class="text-gray-400 text-xs"></span>
           </div>
 
-          <div id="modal-labels" class="flex gap-2 mb-3"></div>
+          <div id="modal-labels" class="flex flex-wrap gap-2 mb-3"></div>
 
           <p id="modal-description" class="text-gray-500 text-sm mb-4"></p>
 
           <div class="bg-gray-50 rounded-xl p-4 flex gap-8 mb-4">
             <div>
               <p class="text-gray-400 text-xs mb-1">Assignee:</p>
-              <p
-                id="modal-assignee"
-                class="text-gray-800 font-medium text-sm"
-              ></p>
+              <p id="modal-assignee" class="text-gray-800 font-medium text-sm"></p>
             </div>
             <div>
               <p class="text-gray-400 text-xs mb-1">Priority:</p>
@@ -189,6 +206,7 @@
         </div>
       </div>
     </section>
+
     <script src="./script/home.js"></script>
   </body>
 </html>
