@@ -328,12 +328,16 @@ const closeModal = () => {
 
 // search logic 
 
-
-
 const searchIssue = () => {
-  let searchText = document.getElementById('search-input').value.toLowerCase();
+ 
+  let searchText = (
+    document.getElementById('search-input')?.value ||
+    document.getElementById('search-input-mobile')?.value ||
+    ''
+  ).toLowerCase();
+
   let filteredData = allData.filter(issue =>
-    issue.title.toLowerCase().includes(searchText) 
+    issue.title.toLowerCase().includes(searchText)
   );
   renderAllData(filteredData);
 }
@@ -341,9 +345,20 @@ const searchIssue = () => {
 document.getElementById('search-input').addEventListener('input', function(){
   let searchText = this.value.toLowerCase();
   let filteredData = allData.filter(issue =>
-    issue.title.toLowerCase().includes(searchText) 
+    issue.title.toLowerCase().includes(searchText)
   );
   renderAllData(filteredData);
 })
+
+
+document.getElementById('search-input-mobile').addEventListener('input', function(){
+  let searchText = this.value.toLowerCase();
+  let filteredData = allData.filter(issue =>
+    issue.title.toLowerCase().includes(searchText)
+  );
+  renderAllData(filteredData);
+})
+
+
 
 loadAllData();
