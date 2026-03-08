@@ -127,6 +127,7 @@ const renderAllData = (infos) => {
 </div>
         `;
     }
+    div.addEventListener('click', () => openModal(info)); // ✅
     allSection.appendChild(div);
   }
 };
@@ -152,6 +153,7 @@ openFilterBtn.addEventListener('click', function(){
     openFilterBtn.classList.add('btn-primary');
     renderOpenData();
 })
+
 closeFilterBtn.addEventListener('click', function(){
   allFilterBtn.classList.remove('btn-primary');
   allFilterBtn.classList.add('btn-base');
@@ -159,7 +161,6 @@ closeFilterBtn.addEventListener('click', function(){
   openFilterBtn.classList.add('btn-base');
   closeFilterBtn.classList.remove('btn-base');
   closeFilterBtn.classList.add('btn-primary');
-
   renderCloseData();
 })
 
@@ -223,6 +224,7 @@ const renderOpenData = () => {
 
 </div>
         `;
+        div.addEventListener('click', () => openModal(issue)); // ✅
         allSection.appendChild(div);
     }
 }
@@ -286,6 +288,7 @@ const renderCloseData = () => {
 
 </div>
         `;
+        div.addEventListener('click', () => openModal(issue)); // ✅
         allSection.appendChild(div);
     }
 }
